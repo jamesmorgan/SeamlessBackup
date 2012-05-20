@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hello" />
+
+    <Button
+        android:id="@+id/auth_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Link with Dropbox" />
+
+    <LinearLayout
+        android:id="@+id/logged_in_display"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Logged in Operations" />
+
+        <Button
+            android:id="@+id/sync_dictionary_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Sync Dictionary" />
+
+        <Button
+            android:id="@+id/download_dictionary_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Download Dictionary" />
+
+        <Button
+            android:id="@+id/sync_bookmarks_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Sync Bookmarks" />
+
+        <Button
+            android:id="@+id/sync_search_history_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Sync Search History" />
+    </LinearLayout>
+
+</LinearLayout>

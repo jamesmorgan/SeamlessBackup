@@ -22,7 +22,7 @@ import com.dropbox.client2.exception.DropboxPartialFileException;
 import com.dropbox.client2.exception.DropboxServerException;
 import com.dropbox.client2.exception.DropboxUnlinkedException;
 
-public class DictionaryUpload extends AsyncTask<Void, Long, Boolean> {
+public class DropboxUploader extends AsyncTask<Void, Long, Boolean> {
 
 	private final DropboxAPI<?> mApi;
 	private final String mPath;
@@ -35,7 +35,7 @@ public class DictionaryUpload extends AsyncTask<Void, Long, Boolean> {
 
 	private String mErrorMsg;
 
-	public DictionaryUpload(Context context, DropboxAPI<?> api, String dropboxPath, File file) {
+	public DropboxUploader(Context context, DropboxAPI<?> api, String dropboxPath, File file) {
 		// We set the context this way so we don't accidentally leak activities
 		mContext = context.getApplicationContext();
 

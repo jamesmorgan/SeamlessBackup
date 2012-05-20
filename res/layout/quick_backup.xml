@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="TODO display if logged in or not" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Logged in Operations" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dip"
+        android:background="#3399FF" />
+
+    <Button
+        android:id="@+id/sync_dictionary_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Sync Dictionary" />
+
+    <Button
+        android:id="@+id/download_dictionary_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Download Dictionary" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dip"
+        android:background="#3399FF" />
+
+    <Button
+        android:id="@+id/sync_bookmarks_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Sync Bookmarks" />
+
+    <Button
+        android:id="@+id/download_bookmarks_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Download Bookmarks" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dip"
+        android:background="#3399FF" />
+
+    <Button
+        android:id="@+id/sync_search_history_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Sync Search History" />
+
+        <Button
+        android:id="@+id/download_search_history_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Download Search History" />
+    
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dip" android:padding="5dip"
+        android:background="#3399FF" />
+
+</LinearLayout>

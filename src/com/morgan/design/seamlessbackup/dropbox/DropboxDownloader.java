@@ -29,7 +29,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.morgan.design.seamlessbackup.domain.DictionaryWord;
 
-public class DictionaryDownload extends AsyncTask<Void, Long, String> {
+public class DropboxDownloader extends AsyncTask<Void, Long, String> {
 
 	public interface OnDownloadedListener {
 		void onDownloaded(List<DictionaryWord> words);
@@ -51,7 +51,7 @@ public class DictionaryDownload extends AsyncTask<Void, Long, String> {
 	private final static String TEMP_CHACHE_DICTIONARY = "cache_Dictionary.gson";
 	private final OnDownloadedListener onDownloadedListener;
 
-	public DictionaryDownload(Context context, DropboxAPI<?> api, String dropboxPath, OnDownloadedListener onDownloadedListener) {
+	public DropboxDownloader(Context context, DropboxAPI<?> api, String dropboxPath, OnDownloadedListener onDownloadedListener) {
 		this.onDownloadedListener = onDownloadedListener;
 		// We set the context this way so we don't accidentally leak activities
 		mContext = context.getApplicationContext();

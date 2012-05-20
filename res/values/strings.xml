@@ -4,4 +4,8 @@
     <string name="hello">Hello World, SeamlessBackupHomeActivity!</string>
     <string name="app_name">SeamlessBackup</string>
 
+    <!-- Home Activity -->
+    <string name="home_title">Welcome To Seamless Backup</string>
+    <string name="home_getting_Started">To get started, please log in to Dropbox. If you dont have an account please, click the follow link…</string>
+
 </resources>

@@ -16,6 +16,12 @@ public class Logger {
 		}
 	}
 
+	public static void i(String tag, String logMsg, Throwable e) {
+		if (Log.isLoggable(tag, Log.INFO)) {
+			Log.i(tag, logMsg, e);
+		}
+	}
+
 	public static void e(String tag, String logMsg, Throwable e) {
 		Log.e(tag, logMsg, e);
 	}

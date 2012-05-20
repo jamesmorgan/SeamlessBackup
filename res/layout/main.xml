@@ -2,54 +2,84 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:gravity="center_horizontal"
     android:orientation="vertical" >
+
+    <TextView
+        style="@android:style/TextAppearance.Large"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/home_title" />
 
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello" />
+        android:padding="10dip"
+        android:text="@string/home_getting_Started" />
 
     <Button
         android:id="@+id/auth_button"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Link with Dropbox" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dip"
+        android:background="#3399FF" />
 
     <LinearLayout
         android:id="@+id/logged_in_display"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="0dp"
         android:layout_weight="1"
+        android:gravity="center_horizontal"
         android:orientation="vertical" >
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Logged in Operations" />
+            android:padding="10dip"
+            android:text="You are now Logged In, options:" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:text="Access Quick Back &amp; Restore Options:" />
 
         <Button
-            android:id="@+id/sync_dictionary_button"
-            android:layout_width="fill_parent"
+            android:id="@+id/quick_backup"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sync Dictionary" />
+            android:minWidth="200dip"
+            android:text="Quick Backup" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:text="Add or Edit Backup Schedule:" />
 
         <Button
-            android:id="@+id/download_dictionary_button"
-            android:layout_width="fill_parent"
+            android:id="@+id/scheduler"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Download Dictionary" />
+            android:minWidth="200dip"
+            android:text="Scheduler" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:text="Modify All Settings:" />
 
         <Button
-            android:id="@+id/sync_bookmarks_button"
-            android:layout_width="fill_parent"
+            android:id="@+id/settings"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sync Bookmarks" />
-
-        <Button
-            android:id="@+id/sync_search_history_button"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Sync Search History" />
+            android:minWidth="200dip"
+            android:text="Settings" />
     </LinearLayout>
 
 </LinearLayout>

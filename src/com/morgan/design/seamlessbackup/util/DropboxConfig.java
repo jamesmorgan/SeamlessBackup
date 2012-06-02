@@ -2,14 +2,20 @@ package com.morgan.design.seamlessbackup.util;
 
 import java.util.Properties;
 
+import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 
+import com.dropbox.client2.DropboxAPI;
 import com.dropbox.client2.android.AndroidAuthSession;
 import com.dropbox.client2.session.AccessTokenPair;
 import com.dropbox.client2.session.AppKeyPair;
 import com.dropbox.client2.session.Session.AccessType;
+import com.morgan.design.seamlessbackup.SeamlessBackupApplication;
 
 public class DropboxConfig {
+
+	protected static final String TAG = "DropboxConfig";
 
 	public final static AccessType ACCESS_TYPE = AccessType.APP_FOLDER;
 
@@ -34,11 +40,15 @@ public class DropboxConfig {
 		return session;
 	}
 
-	private static AppKeyPair loadAppKeyPair(Context context) {
-		PropertiesReader reader = new PropertiesReader(context);
-		Properties properties = reader.getProperties();
-
-		return new AppKeyPair(properties.getProperty("dropbox.api.key"), properties.getProperty("dropbox.api.secret"));
+	/**
+	 * Retrieves the {@link DropboxAPI} from the {@link Application} associated to the activity. Returns the singleton,
+	 * use this in conjunction with <code>DropboxConfig.onResume</code> method to ensure an activity depending on
+	 * Dropbox works as expected
+	 * 
+	 * @return the {@link DropboxAPI} to use with the given {@link Activity}
+	 */
+	public static DropboxAPI<AndroidAuthSession> getApi(Activity activity) {
+		return ((SeamlessBackupApplication) activity.getApplication()).getDropboxApi();
 	}
 
 	/**
@@ -56,6 +66,13 @@ public class DropboxConfig {
 	 */
 	public static void clearKeys(Context context) {
 		DropboxPrefs.clearKeys(context);
+	}
+
+	private static AppKeyPair loadAppKeyPair(Context context) {
+		PropertiesReader reader = new PropertiesReader(context);
+		Properties properties = reader.getProperties();
+
+		return new AppKeyPair(properties.getProperty("dropbox.api.key"), properties.getProperty("dropbox.api.secret"));
 	}
 
 }

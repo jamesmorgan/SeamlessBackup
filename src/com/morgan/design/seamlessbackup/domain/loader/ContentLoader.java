@@ -1,4 +1,4 @@
-package com.morgan.design.seamlessbackup.service;
+package com.morgan.design.seamlessbackup.domain.loader;
 
 import android.content.Context;
 

@@ -79,7 +79,8 @@ public class Bookmark {
 
 	@Override
 	public String toString() {
-		return Objects.toStringHelper(this).add("id", id).add("bookmark", bookmark).add("created", created).add("date", date).add("fav_icon", fav_icon)
+		return Objects
+				.toStringHelper(this).add("id", id).add("bookmark", bookmark).add("created", created).add("date", date).add("fav_icon", fav_icon)
 				.add("title", title).add("url", url).add("visits", visits).toString();
 	}
 }

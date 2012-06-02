@@ -1,4 +1,4 @@
-package com.morgan.design.seamlessbackup.service;
+package com.morgan.design.seamlessbackup.domain.loader;
 
 import java.util.List;
 
@@ -11,9 +11,12 @@ import android.provider.UserDictionary;
 
 import com.google.common.collect.Lists;
 import com.morgan.design.seamlessbackup.domain.DictionaryWord;
+import com.morgan.design.seamlessbackup.domain.mapper.DomainMappingFactory;
 import com.morgan.design.seamlessbackup.util.Logger;
 
-public class WordDictionaryContentLoader extends AbstractContentLoader implements ContentLoader<List<DictionaryWord>> {
+public class WordDictionaryContentLoader implements ContentLoader<List<DictionaryWord>> {
+
+	public static final String TAG = "ContentLoader";
 
 	// The user dictionary content URI
 	private static final Uri CONTENT_URI = UserDictionary.Words.CONTENT_URI;
@@ -36,21 +39,14 @@ public class WordDictionaryContentLoader extends AbstractContentLoader implement
 
 	@Override
 	public List<DictionaryWord> loadContent(Context context) {
-		Cursor mCursor = null;
-		try {
-			//@formatter:off
-			mCursor = context.getContentResolver().query(
-					CONTENT_URI, 
-					WORD_COLUMNS, // The columns to return for each row
-					null, // Either null, or the word the user entered
-					null, // Either empty/null, or the string the user entered
-					DEFAULT_SORT_ORDER);
-			//@formatter:on
-		}
-		catch (Exception e) {
-			Logger.e(TAG, "Exception thrown looking up dictionay content", e);
-			return NONE_FOUND;
-		}
+
+		//@formatter:off
+		final Cursor mCursor = CursorBuilder.create(context)
+				.query(CONTENT_URI)
+				.withColumns(WORD_COLUMNS)
+				.sortBy(DEFAULT_SORT_ORDER)
+				.createCursor();
+		//@formatter:on
 
 		if (null == mCursor) {
 			// Some providers return null if an error occurs, others throw an exception
@@ -61,28 +57,9 @@ public class WordDictionaryContentLoader extends AbstractContentLoader implement
 			Logger.i(TAG, "No dictionary entries found");
 			return NONE_FOUND;
 		}
-		else {
-			Logger.i(TAG, String.format("Found %s entries", mCursor.getCount()));
+		Logger.i(TAG, String.format("Found %s entries", mCursor.getCount()));
 
-			List<DictionaryWord> foundConent = Lists.newArrayList();
-
-			// Move cursor on, default is -1
-			while (mCursor.moveToNext()) {
-
-				DictionaryWord wordFound = new DictionaryWord();
-				wordFound.setId(getInt(mCursor, UserDictionary.Words._ID));
-				wordFound.setFrequency(getInt(mCursor, UserDictionary.Words.FREQUENCY));
-				wordFound.setLocale(getString(mCursor, UserDictionary.Words.LOCALE));
-				wordFound.setWord(getString(mCursor, UserDictionary.Words.WORD));
-
-				Logger.d(TAG, "==================================");
-				Logger.d(TAG, wordFound);
-				Logger.d(TAG, "==================================");
-
-				foundConent.add(wordFound);
-			}
-			return foundConent;
-		}
+		return DomainMappingFactory.mapDictionaryWordList(mCursor);
 	}
 
 	@Override
@@ -92,10 +69,15 @@ public class WordDictionaryContentLoader extends AbstractContentLoader implement
 
 		for (DictionaryWord dictionaryWord : content) {
 
-			String mSelectClause = UserDictionary.Words.WORD + " = ?";
-			String[] mSelectArgs = { dictionaryWord.getWord() };
-
-			Cursor matchedWord = contentResolver.query(CONTENT_URI, ID_ONLY_COLUMN, mSelectClause, mSelectArgs, DEFAULT_SORT_ORDER);
+			//@formatter:off
+			final Cursor matchedWord = CursorBuilder.create(context)
+					.query(CONTENT_URI)
+					.withColumns(ID_ONLY_COLUMN)
+					.where(UserDictionary.Words.WORD + " = ?")
+					.whereArgs(new String[] { dictionaryWord.getWord() })
+					.sortBy(DEFAULT_SORT_ORDER)
+					.createCursor();
+			//@formatter:on	
 
 			if (null == matchedWord) {
 				Logger.i(TAG, "Possible Error, cursor is null, no dictionary entries found");

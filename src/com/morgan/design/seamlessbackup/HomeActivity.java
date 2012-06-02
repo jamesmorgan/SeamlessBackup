@@ -1,6 +1,5 @@
 package com.morgan.design.seamlessbackup;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,17 +8,11 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.dropbox.client2.DropboxAPI;
-import com.dropbox.client2.android.AndroidAuthSession;
-import com.dropbox.client2.session.TokenPair;
 import com.morgan.design.seamlessbackup.util.DropboxConfig;
-import com.morgan.design.seamlessbackup.util.Logger;
 
-public class HomeActivity extends Activity {
+public class HomeActivity extends AbstractAuthenticatedActivity {
 
 	private final String TAG = HomeActivity.this.getClass().getName();
-
-	protected DropboxAPI<AndroidAuthSession> mApi;
 
 	private Button mLinkDropboxAccount;
 	private Button mQuickBackup;
@@ -33,8 +26,6 @@ public class HomeActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-
-		mApi = ((SeamlessBackupApplication) getApplication()).getDropboxApi();
 
 		mLoggedInContainer = (LinearLayout) findViewById(R.id.logged_in_display);
 		mLinkDropboxAccount = (Button) findViewById(R.id.auth_button);
@@ -66,28 +57,14 @@ public class HomeActivity extends Activity {
 	}
 
 	@Override
-	protected void onResume() {
-		super.onResume();
-		AndroidAuthSession session = mApi.getSession();
+	public void onAuthenticationSuccessful() {
+		setLoggedIn(true);
+	}
 
-		// The next part must be inserted in the onResume() method of the
-		// activity from which session.startAuthentication() was called, so
-		// that Dropbox authentication completes properly.
-		if (session.authenticationSuccessful()) {
-			try {
-				// Mandatory call to complete the auth
-				session.finishAuthentication();
-
-				// Store it locally in our app for later use
-				TokenPair tokens = session.getAccessTokenPair();
-				DropboxConfig.storeKeys(this, tokens.key, tokens.secret);
-				setLoggedIn(true);
-			}
-			catch (IllegalStateException e) {
-				Toast.makeText(this, "Couldn't authenticate with Dropbox:" + e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-				Logger.i(TAG, "Error authenticating", e);
-			}
-		}
+	@Override
+	public void onAuthenticationFailed(IllegalStateException e) {
+		setLoggedIn(false);
+		Toast.makeText(this, "Couldn't authenticate with Dropbox:" + e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
 	}
 
 	private void logIn() {

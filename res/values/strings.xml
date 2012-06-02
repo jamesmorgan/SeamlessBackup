@@ -2,7 +2,7 @@
 <resources>
 
     <string name="hello">Hello World, SeamlessBackupHomeActivity!</string>
-    <string name="app_name">SeamlessBackup</string>
+    <string name="app_name">Seamless Backup</string>
 
     <!-- Home Activity -->
     <string name="home_title">Welcome To Seamless Backup</string>

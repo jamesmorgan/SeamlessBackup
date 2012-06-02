@@ -21,6 +21,8 @@ import com.dropbox.client2.exception.DropboxParseException;
 import com.dropbox.client2.exception.DropboxPartialFileException;
 import com.dropbox.client2.exception.DropboxServerException;
 import com.dropbox.client2.exception.DropboxUnlinkedException;
+import com.morgan.design.seamlessbackup.QuickBackupActivity;
+import com.morgan.design.seamlessbackup.domain.BackupType;
 
 public class DropboxUploader extends AsyncTask<Void, Long, Boolean> {
 
@@ -35,13 +37,13 @@ public class DropboxUploader extends AsyncTask<Void, Long, Boolean> {
 
 	private String mErrorMsg;
 
-	public DropboxUploader(Context context, DropboxAPI<?> api, String dropboxPath, File file) {
+	public DropboxUploader(QuickBackupActivity context, DropboxAPI<?> api, BackupType dictionary, File file) {
 		// We set the context this way so we don't accidentally leak activities
 		mContext = context.getApplicationContext();
 
 		mFileLen = file.length();
 		mApi = api;
-		mPath = dropboxPath;
+		mPath = dictionary.dir();
 		mFile = file;
 
 		mDialog = new ProgressDialog(context);

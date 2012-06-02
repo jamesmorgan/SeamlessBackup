@@ -21,7 +21,7 @@
 
     <!-- Home Activity -->
     <application
-        android:name="com.morgan.design.seamlessbackup.SeamlessBackupApplication"
+        android:name=".SeamlessBackupApplication"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name" >
         <activity

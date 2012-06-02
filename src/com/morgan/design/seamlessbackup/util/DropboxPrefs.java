@@ -6,7 +6,7 @@ import android.content.SharedPreferences.Editor;
 
 class DropboxPrefs {
 
-	// You don't need to change these, leave them alone.
+	// These values should not need to be changed
 	private final static String ACCOUNT_PREFS_NAME = "prefs";
 	private final static String ACCESS_KEY_NAME = "ACCESS_KEY";
 	private final static String ACCESS_SECRET_NAME = "ACCESS_SECRET";

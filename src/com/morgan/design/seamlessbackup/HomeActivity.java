@@ -1,5 +1,7 @@
 package com.morgan.design.seamlessbackup;
 
+import roboguice.inject.ContentView;
+import roboguice.inject.InjectView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,14 +12,22 @@ import android.widget.Toast;
 
 import com.morgan.design.seamlessbackup.util.DropboxConfig;
 
+@ContentView(R.layout.main)
 public class HomeActivity extends AbstractAuthenticatedActivity {
 
-	private final String TAG = HomeActivity.this.getClass().getName();
-
+	@InjectView(R.id.auth_button)
 	private Button mLinkDropboxAccount;
+
+	@InjectView(R.id.quick_backup)
 	private Button mQuickBackup;
+
+	@InjectView(R.id.scheduler)
 	private Button mScheduler;
+
+	@InjectView(R.id.settings)
 	private Button mSettings;
+
+	@InjectView(R.id.logged_in_display)
 	private LinearLayout mLoggedInContainer;
 
 	private boolean mLoggedIn;
@@ -25,13 +35,6 @@ public class HomeActivity extends AbstractAuthenticatedActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
-
-		mLoggedInContainer = (LinearLayout) findViewById(R.id.logged_in_display);
-		mLinkDropboxAccount = (Button) findViewById(R.id.auth_button);
-		mQuickBackup = (Button) findViewById(R.id.quick_backup);
-		mScheduler = (Button) findViewById(R.id.scheduler);
-		mSettings = (Button) findViewById(R.id.settings);
 
 		mLinkDropboxAccount.setOnClickListener(new OnClickListener() {
 			@Override
@@ -49,6 +52,20 @@ public class HomeActivity extends AbstractAuthenticatedActivity {
 			@Override
 			public void onClick(View v) {
 				startActivity(new Intent(HomeActivity.this, QuickBackupActivity.class));
+			}
+		});
+
+		mScheduler.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO
+			}
+		});
+
+		mSettings.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO
 			}
 		});
 

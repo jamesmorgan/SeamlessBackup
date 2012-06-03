@@ -3,6 +3,8 @@ package com.morgan.design.seamlessbackup;
 import java.io.File;
 import java.util.List;
 
+import roboguice.inject.ContentView;
+import roboguice.inject.InjectView;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -21,54 +23,63 @@ import com.morgan.design.seamlessbackup.dropbox.DropboxDownloader.OnDownloadedLi
 import com.morgan.design.seamlessbackup.dropbox.DropboxUploader;
 import com.morgan.design.seamlessbackup.service.BackupCreator;
 
+@ContentView(R.layout.quick_backup)
 public class QuickBackupActivity extends AbstractAuthenticatedActivity {
 
-	private final String TAG = QuickBackupActivity.this.getClass().getSimpleName();
-
-	private Button mSyncDictionary;
-	private Button mDownloadDictionary;
-
-	private Button mSyncSearchHistory;
+	@InjectView(R.id.download_search_history_button)
 	private Button mDownloadSearchHistory;
+	@InjectView(R.id.sync_search_history_button)
+	private Button mSyncSearchHistory;
 
-	private Button mSyncBookmarks;
+	@InjectView(R.id.download_bookmarks_button)
 	private Button mDownloadBookmarks;
+	@InjectView(R.id.sync_bookmarks_button)
+	private Button mSyncBookmarks;
+
+	@InjectView(R.id.download_dictionary_button)
+	private Button mDownloadDictionary;
+	@InjectView(R.id.sync_dictionary_button)
+	private Button mSyncDictionary;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.quick_backup);
 
-		mSyncDictionary = (Button) findViewById(R.id.sync_dictionary_button);
-		mDownloadDictionary = (Button) findViewById(R.id.download_dictionary_button);
-
-		mSyncBookmarks = (Button) findViewById(R.id.sync_bookmarks_button);
-		mDownloadBookmarks = (Button) findViewById(R.id.download_bookmarks_button);
-
-		mSyncSearchHistory = (Button) findViewById(R.id.sync_search_history_button);
-		mDownloadSearchHistory = (Button) findViewById(R.id.download_search_history_button);
-
-		mSyncDictionary.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				syncDictionary();
-			}
-		});
-
+		// Bookmarks
 		mSyncBookmarks.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				syncBookmarks();
 			}
 		});
+		mDownloadBookmarks.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO
+			}
+		});
 
+		// Search History
 		mSyncSearchHistory.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				syncSearchHistory();
 			}
 		});
+		mDownloadSearchHistory.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO
+			}
+		});
 
+		// Dictionary
+		mSyncDictionary.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				syncDictionary();
+			}
+		});
 		mDownloadDictionary.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {

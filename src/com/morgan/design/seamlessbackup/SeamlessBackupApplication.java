@@ -16,7 +16,6 @@ public class SeamlessBackupApplication extends Application {
 
 		AndroidAuthSession session = DropboxConfig.buildSession(this);
 		mApi = new DropboxAPI<AndroidAuthSession>(session);
-
 	}
 
 	public DropboxAPI<AndroidAuthSession> getDropboxApi() {

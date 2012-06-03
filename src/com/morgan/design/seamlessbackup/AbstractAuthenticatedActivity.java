@@ -3,7 +3,7 @@ package com.morgan.design.seamlessbackup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import android.app.Activity;
+import roboguice.activity.RoboActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -12,7 +12,7 @@ import com.dropbox.client2.android.AndroidAuthSession;
 import com.dropbox.client2.session.TokenPair;
 import com.morgan.design.seamlessbackup.util.DropboxConfig;
 
-public abstract class AbstractAuthenticatedActivity extends Activity implements AuthenticatedActivity {
+public abstract class AbstractAuthenticatedActivity extends RoboActivity implements AuthenticatedActivity {
 
 	private static Logger log = LoggerFactory.getLogger(AbstractAuthenticatedActivity.class);
 

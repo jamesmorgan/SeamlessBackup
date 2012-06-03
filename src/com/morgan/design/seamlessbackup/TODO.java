@@ -43,9 +43,9 @@ public class TODO {
 	
 	// TODO -> DONE (06/03/2012) - Set up maven integration
 	// TODO -> DONE (06/03/2012) - Set up Logback & slf4j for Android
+	// TODO -> DONE (06/03/2012) - Set up RoboGuice
 	// TODO -> Set up ARCA logging
 	// TODO -> Set up Google Analytics
-	// TODO -> Set up Android Annotations
 	
 	// TODO -> Investigate Pro-guard
 	// TODO -> Obfuscation API keys including manifest

@@ -11,6 +11,9 @@ import static android.provider.Browser.BookmarkColumns.VISITS;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
@@ -19,11 +22,10 @@ import android.provider.Browser;
 import com.google.common.collect.Lists;
 import com.morgan.design.seamlessbackup.domain.Bookmark;
 import com.morgan.design.seamlessbackup.domain.mapper.DomainMappingFactory;
-import com.morgan.design.seamlessbackup.util.Logger;
 
 public class BookmarkContentLoader implements ContentLoader<List<Bookmark>> {
 
-	public static final String TAG = "ContentLoader";
+	private static Logger log = LoggerFactory.getLogger(BookmarkContentLoader.class);
 
 	private static final Uri CONTENT_URI = Browser.BOOKMARKS_URI;
 	private static final List<Bookmark> NONE_FOUND = Lists.newArrayList();
@@ -57,14 +59,14 @@ public class BookmarkContentLoader implements ContentLoader<List<Bookmark>> {
 
 		if (null == mCursor) {
 			// Some providers return null if an error occurs, others throw an exception
-			Logger.i(TAG, "Possible Error, cursor is null, no bookmark entries found");
+			log.info("Possible Error, cursor is null, no bookmark entries found");
 			return NONE_FOUND;
 		}
 		else if (mCursor.getCount() < 1) {
-			Logger.i(TAG, "No bookmark entries found");
+			log.info("No bookmark entries found");
 			return NONE_FOUND;
 		}
-		Logger.i(TAG, String.format("Found %s entries", mCursor.getCount()));
+		log.info("Found {} entries", mCursor.getCount());
 
 		return DomainMappingFactory.mapBookmarkList(mCursor);
 	}

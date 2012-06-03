@@ -11,16 +11,18 @@ import static android.provider.Browser.BookmarkColumns.VISITS;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import android.database.Cursor;
 import android.util.Base64;
 
 import com.google.common.collect.Lists;
 import com.morgan.design.seamlessbackup.domain.Bookmark;
-import com.morgan.design.seamlessbackup.util.Logger;
 
 public class BookmarkMapper extends AbstractMappingHelper {
 
-	public static final String TAG = "BookmarkMapper";
+	private static Logger log = LoggerFactory.getLogger(BookmarkMapper.class);
 
 	public List<Bookmark> mapCursor(Cursor mCursor) {
 
@@ -41,9 +43,9 @@ public class BookmarkMapper extends AbstractMappingHelper {
 			bookmark.setUrl(getString(mCursor, URL));
 			bookmark.setVisits(getString(mCursor, VISITS));
 
-			Logger.d(TAG, "==================================");
-			Logger.d(TAG, bookmark);
-			Logger.d(TAG, "==================================");
+			log.debug("==================================");
+			log.debug("Created Bookmark=[{}]", bookmark);
+			log.debug("==================================");
 
 			foundConent.add(bookmark);
 		}

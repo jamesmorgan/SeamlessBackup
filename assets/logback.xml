@@ -1,0 +1,20 @@
+<configuration>
+
+	<appender name="LOGCAT" class="ch.qos.logback.classic.android.LogcatAppender">
+		<tagEncoder>
+			<pattern>%logger{0}</pattern>
+		</tagEncoder>
+		<encoder>
+			<pattern>[%method] > %msg%n</pattern>
+		</encoder>
+	</appender>
+
+
+	<root level="TRACE">
+		<appender-ref ref="LOGCAT" />
+	</root>
+
+	<logger name="com.morgan.design.seamlessbackup.domain.mapper"
+		level="INFO" />
+
+</configuration>

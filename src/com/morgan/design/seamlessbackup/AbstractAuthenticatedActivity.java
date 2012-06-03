@@ -1,5 +1,8 @@
 package com.morgan.design.seamlessbackup;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -8,11 +11,10 @@ import com.dropbox.client2.DropboxAPI;
 import com.dropbox.client2.android.AndroidAuthSession;
 import com.dropbox.client2.session.TokenPair;
 import com.morgan.design.seamlessbackup.util.DropboxConfig;
-import com.morgan.design.seamlessbackup.util.Logger;
 
 public abstract class AbstractAuthenticatedActivity extends Activity implements AuthenticatedActivity {
 
-	private static final String TAG = "AuthenticatedActivity";
+	private static Logger log = LoggerFactory.getLogger(AbstractAuthenticatedActivity.class);
 
 	protected DropboxAPI<AndroidAuthSession> mApi;
 
@@ -44,7 +46,7 @@ public abstract class AbstractAuthenticatedActivity extends Activity implements 
 				onAuthenticationSuccessful();
 			}
 			catch (IllegalStateException e) {
-				Logger.i(TAG, "Error authenticating", e);
+				log.info("Error authenticating", e);
 				onAuthenticationFailed(e);
 			}
 		}

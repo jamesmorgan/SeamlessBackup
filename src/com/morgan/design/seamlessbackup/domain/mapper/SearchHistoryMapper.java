@@ -6,15 +6,17 @@ import static android.provider.Browser.SearchColumns.SEARCH;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import android.database.Cursor;
 
 import com.google.common.collect.Lists;
 import com.morgan.design.seamlessbackup.domain.SearchHistory;
-import com.morgan.design.seamlessbackup.util.Logger;
 
 public class SearchHistoryMapper extends AbstractMappingHelper {
 
-	public static final String TAG = "SearchHistoryMapper";
+	private static Logger log = LoggerFactory.getLogger(SearchHistoryMapper.class);
 
 	public List<SearchHistory> mapCursor(Cursor mCursor) {
 
@@ -27,9 +29,9 @@ public class SearchHistoryMapper extends AbstractMappingHelper {
 			searchHistory.setDate(getString(mCursor, DATE));
 			searchHistory.setSearch(getString(mCursor, SEARCH));
 
-			Logger.d(TAG, "==================================");
-			Logger.d(TAG, searchHistory);
-			Logger.d(TAG, "==================================");
+			log.debug("==================================");
+			log.debug("Created SearchHistory=[{}]", searchHistory);
+			log.debug("==================================");
 
 			foundConent.add(searchHistory);
 		}

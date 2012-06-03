@@ -7,16 +7,18 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import android.os.Environment;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.morgan.design.seamlessbackup.domain.BackupType;
-import com.morgan.design.seamlessbackup.util.Logger;
 
 public class BackupCreator {
 
-	private final String TAG = BackupCreator.this.getClass().getSimpleName();
+	private static Logger log = LoggerFactory.getLogger(BackupCreator.class);
 
 	private static final String SEAMLESS_BACKUP_DIR = "/SeamlessBackup/";
 
@@ -58,7 +60,7 @@ public class BackupCreator {
 		File sdCard = Environment.getExternalStorageDirectory();
 		File dir = new File(sdCard.getAbsolutePath() + SEAMLESS_BACKUP_DIR);
 		if (!dir.exists()) {
-			Logger.i(TAG, "Making DIR as not proesent");
+			log.info("Making DIR as not proesent");
 			dir.mkdirs();
 		}
 

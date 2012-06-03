@@ -2,6 +2,9 @@ package com.morgan.design.seamlessbackup.domain.loader;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -12,11 +15,10 @@ import android.provider.UserDictionary;
 import com.google.common.collect.Lists;
 import com.morgan.design.seamlessbackup.domain.DictionaryWord;
 import com.morgan.design.seamlessbackup.domain.mapper.DomainMappingFactory;
-import com.morgan.design.seamlessbackup.util.Logger;
 
 public class WordDictionaryContentLoader implements ContentLoader<List<DictionaryWord>> {
 
-	public static final String TAG = "ContentLoader";
+	private static Logger log = LoggerFactory.getLogger(WordDictionaryContentLoader.class);
 
 	// The user dictionary content URI
 	private static final Uri CONTENT_URI = UserDictionary.Words.CONTENT_URI;
@@ -50,14 +52,14 @@ public class WordDictionaryContentLoader implements ContentLoader<List<Dictionar
 
 		if (null == mCursor) {
 			// Some providers return null if an error occurs, others throw an exception
-			Logger.i(TAG, "Possible Error, cursor is null, no dictionary entries found");
+			log.info("Possible Error, cursor is null, no dictionary entries found");
 			return NONE_FOUND;
 		}
 		else if (mCursor.getCount() < 1) {
-			Logger.i(TAG, "No dictionary entries found");
+			log.info("No dictionary entries found");
 			return NONE_FOUND;
 		}
-		Logger.i(TAG, String.format("Found %s entries", mCursor.getCount()));
+		log.info("Found {} entries", mCursor.getCount());
 
 		return DomainMappingFactory.mapDictionaryWordList(mCursor);
 	}
@@ -80,16 +82,16 @@ public class WordDictionaryContentLoader implements ContentLoader<List<Dictionar
 			//@formatter:on	
 
 			if (null == matchedWord) {
-				Logger.i(TAG, "Possible Error, cursor is null, no dictionary entries found");
+				log.info("Possible Error, cursor is null, no dictionary entries found");
 			}
 			// No match, insert new row
 			else if (0 == matchedWord.getCount()) {
-				Logger.i(TAG, "Inserting New Word: " + dictionaryWord.getWord());
+				log.info("Inserting New Word: {}", dictionaryWord.getWord());
 				contentResolver.insert(CONTENT_URI, createStatementValues(dictionaryWord));
 			}
 			// Found direct match
 			else if (1 == matchedWord.getCount()) {
-				Logger.i(TAG, "Found matching word, updating: " + dictionaryWord.getWord());
+				log.info("Found matching word, updating: {}", dictionaryWord.getWord());
 
 				matchedWord.moveToFirst();
 
@@ -101,7 +103,7 @@ public class WordDictionaryContentLoader implements ContentLoader<List<Dictionar
 				String[] mUpdateArgs = { Integer.toString(idOfMatchedWord) };
 
 				int mRowsUpdated = contentResolver.update(CONTENT_URI, createStatementValues(dictionaryWord), mUpdateClause, mUpdateArgs);
-				Logger.i(TAG, "Dictionary Rows updated: " + mRowsUpdated);
+				log.info("Dictionary Rows updated: {}", mRowsUpdated);
 			}
 			else {
 				// Multiple matches, TODO handle this?

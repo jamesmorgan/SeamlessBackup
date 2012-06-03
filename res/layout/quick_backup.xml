@@ -23,12 +23,14 @@
         android:id="@+id/sync_dictionary_button"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:padding="10dip"
         android:text="Sync Dictionary" />
 
     <Button
         android:id="@+id/download_dictionary_button"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:padding="10dip"
         android:text="Download Dictionary" />
 
     <View
@@ -40,12 +42,14 @@
         android:id="@+id/sync_bookmarks_button"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:padding="10dip"
         android:text="Sync Bookmarks" />
 
     <Button
         android:id="@+id/download_bookmarks_button"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:padding="10dip"
         android:text="Download Bookmarks" />
 
     <View
@@ -56,18 +60,21 @@
     <Button
         android:id="@+id/sync_search_history_button"
         android:layout_width="fill_parent"
+        android:padding="10dip"
         android:layout_height="wrap_content"
         android:text="Sync Search History" />
-
-        <Button
+
+    <Button
         android:id="@+id/download_search_history_button"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:padding="10dip"
         android:text="Download Search History" />
-    
+
     <View
         android:layout_width="fill_parent"
-        android:layout_height="2dip" android:padding="5dip"
-        android:background="#3399FF" />
+        android:layout_height="2dip"
+        android:background="#3399FF"
+        android:padding="5dip" />
 
 </LinearLayout>

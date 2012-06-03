@@ -1,15 +1,17 @@
 package com.morgan.design.seamlessbackup.domain.loader;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 
 import com.google.common.base.Objects;
-import com.morgan.design.seamlessbackup.util.Logger;
 
 public class CursorBuilder {
 
-	public static final String TAG = "CursorBuilder";
+	private static Logger log = LoggerFactory.getLogger(CursorBuilder.class);
 
 	private final Context context;
 
@@ -65,7 +67,7 @@ public class CursorBuilder {
 			//@formatter:on
 		}
 		catch (Exception e) {
-			Logger.e(TAG, String.format("Exception thrown creating cusor content, Builder=[%s]", toString()), e);
+			log.error(String.format("Exception thrown creating cusor content, Builder=[%s]", toString()), e);
 		}
 		return mCursor;
 	}

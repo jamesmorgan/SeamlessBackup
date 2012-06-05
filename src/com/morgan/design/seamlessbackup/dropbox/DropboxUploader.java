@@ -23,11 +23,12 @@ import com.dropbox.client2.exception.DropboxServerException;
 import com.dropbox.client2.exception.DropboxUnlinkedException;
 import com.morgan.design.seamlessbackup.QuickBackupActivity;
 import com.morgan.design.seamlessbackup.domain.BackupType;
+import com.morgan.design.seamlessbackup.domain.FileNameGenerator;
 
 public class DropboxUploader extends AsyncTask<Void, Long, Boolean> {
 
 	private final DropboxAPI<?> mApi;
-	private final String mPath;
+	private final BackupType mBackupType;
 	private final File mFile;
 
 	private final long mFileLen;
@@ -37,13 +38,13 @@ public class DropboxUploader extends AsyncTask<Void, Long, Boolean> {
 
 	private String mErrorMsg;
 
-	public DropboxUploader(QuickBackupActivity context, DropboxAPI<?> api, BackupType dictionary, File file) {
+	public DropboxUploader(QuickBackupActivity context, DropboxAPI<?> api, BackupType backupType, File file) {
 		// We set the context this way so we don't accidentally leak activities
 		mContext = context.getApplicationContext();
 
 		mFileLen = file.length();
 		mApi = api;
-		mPath = dictionary.dir();
+		mBackupType = backupType;
 		mFile = file;
 
 		mDialog = new ProgressDialog(context);
@@ -71,10 +72,11 @@ public class DropboxUploader extends AsyncTask<Void, Long, Boolean> {
 	@Override
 	protected Boolean doInBackground(Void... params) {
 		try {
-			// By creating a request, we get a handle to the putFile operation,
-			// so we can cancel it later if we want to
+			// By creating a request, we get a handle to the putFile operation, so we can cancel it later if we want to
 			FileInputStream fis = new FileInputStream(mFile);
-			String path = mPath + mFile.getName();
+
+			String path = FileNameGenerator.generateUploadPath(mBackupType, mFile);
+
 			mRequest = mApi.putFileOverwriteRequest(path, fis, mFile.length(), new ProgressListener() {
 				@Override
 				public long progressInterval() {

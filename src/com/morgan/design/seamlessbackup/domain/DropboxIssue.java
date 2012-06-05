@@ -1,6 +1,7 @@
 package com.morgan.design.seamlessbackup.domain;
 
 import com.dropbox.client2.exception.DropboxServerException;
+import com.google.common.base.Objects;
 
 public class DropboxIssue {
 
@@ -63,5 +64,10 @@ public class DropboxIssue {
 		issue.dropboxError = null != e.body.userError ? e.body.userError : e.body.error;
 
 		return issue;
+	}
+
+	@Override
+	public String toString() {
+		return Objects.toStringHelper(this).add("error", error).add("dropboxError", dropboxError).toString();
 	}
 }

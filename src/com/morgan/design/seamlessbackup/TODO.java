@@ -74,11 +74,16 @@ public class TODO {
 	// TODO -> Backup SMS's
 	
 	// TODO -> DONE (05/06/2012) - Dropbox API: Create re-usable Dropbox download'er component
-	// TODO -> DONE (05/06/2012) - Dropbox API: Deal with various dropbox exceptions and return types
+	// TODO -> DONE (05/06/2012) - Dropbox API (Download) : Deal with various dropbox exceptions and return types
+	// TODO -> Dropbox API (Upload) : Deal with various dropbox exceptions and return types
 	// TODO -> Dropbox API: Deal with file not found in backup directory
 	// TODO -> Dropbox API: Deal with incorrect file type/name in backup directory
 	// TODO -> Dropbox API: Retry on certain errors
-	// TODO -> Dropbox API: Devise backup file chooser/parser type e.g. get latest by date
+	
+	// TODO -> DONE (05/06/2012) - When uploading Datetime stamp each backup file ddMMYYYHHmmss
+	// TODO -> Devise backup file chooser/parser type e.g. get latest by date
+	// TODO -> Compress files, with user option, investigate best fit /algorithm
+	// TODO -> Use phone rating to determine if can handle file compression easily, default on/off depending on phone
 	
 	// TODO -> Ability to schedule weekly backups
 	// TODO -> Include DB schedule backup configuration

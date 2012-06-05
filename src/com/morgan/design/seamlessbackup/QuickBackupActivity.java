@@ -94,25 +94,19 @@ public class QuickBackupActivity extends AbstractAuthenticatedActivity {
 
 	protected void syncSearchHistory() {
 		List<SearchHistory> loadContent = new SearchHistoryContentLoader().loadContent(this);
-
 		File file = new BackupCreator().createFile(loadContent, BackupType.BROWSER_SEARCH_HISTORY);
-
 		new DropboxUploader(this, mApi, BackupType.BROWSER_SEARCH_HISTORY, file).execute();
 	}
 
 	protected void syncBookmarks() {
 		List<Bookmark> loadContent = new BookmarkContentLoader().loadContent(this);
-
 		File file = new BackupCreator().createFile(loadContent, BackupType.BROWSER_BOOKMARKS);
-
 		new DropboxUploader(this, mApi, BackupType.BROWSER_BOOKMARKS, file).execute();
 	}
 
 	protected void syncDictionary() {
 		List<DictionaryWord> loadContent = new WordDictionaryContentLoader().loadContent(this);
-
 		File file = new BackupCreator().createFile(loadContent, BackupType.DICTIONARY);
-
 		new DropboxUploader(this, mApi, BackupType.DICTIONARY, file).execute();
 	}
 

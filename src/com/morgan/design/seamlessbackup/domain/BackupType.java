@@ -8,8 +8,8 @@ public enum BackupType {
 
 	BROWSER_SEARCH_HISTORY("/Browser/SearchHistory/", "searchhistory.json");
 
-	private final String fileName;
 	private final String dir;
+	private final String fileName;
 
 	private BackupType(String dir, String fileName) {
 		this.dir = dir;

@@ -2,7 +2,7 @@ package com.morgan.design.seamlessbackup.domain.mapper;
 
 import android.database.Cursor;
 
-public abstract class AbstractMappingHelper {
+abstract class AbstractMappingHelper {
 
 	protected static int getInt(Cursor mCursor, String column) {
 		return mCursor.getInt(mCursor.getColumnIndex(column));

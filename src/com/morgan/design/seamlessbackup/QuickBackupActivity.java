@@ -14,13 +14,16 @@ import android.widget.Toast;
 import com.morgan.design.seamlessbackup.domain.BackupType;
 import com.morgan.design.seamlessbackup.domain.Bookmark;
 import com.morgan.design.seamlessbackup.domain.DictionaryWord;
+import com.morgan.design.seamlessbackup.domain.DropboxIssue;
 import com.morgan.design.seamlessbackup.domain.SearchHistory;
 import com.morgan.design.seamlessbackup.domain.loader.BookmarkContentLoader;
 import com.morgan.design.seamlessbackup.domain.loader.SearchHistoryContentLoader;
 import com.morgan.design.seamlessbackup.domain.loader.WordDictionaryContentLoader;
-import com.morgan.design.seamlessbackup.dropbox.DropboxDownloader;
-import com.morgan.design.seamlessbackup.dropbox.DropboxDownloader.OnDownloadedListener;
+import com.morgan.design.seamlessbackup.dropbox.BookmarkDownloader;
+import com.morgan.design.seamlessbackup.dropbox.DictionWordDownloader;
+import com.morgan.design.seamlessbackup.dropbox.DownloadReciever;
 import com.morgan.design.seamlessbackup.dropbox.DropboxUploader;
+import com.morgan.design.seamlessbackup.dropbox.SearchHistoryDownloader;
 import com.morgan.design.seamlessbackup.service.BackupCreator;
 
 @ContentView(R.layout.quick_backup)
@@ -55,7 +58,7 @@ public class QuickBackupActivity extends AbstractAuthenticatedActivity {
 		mDownloadBookmarks.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO
+				downloadBookmarks();
 			}
 		});
 
@@ -69,7 +72,7 @@ public class QuickBackupActivity extends AbstractAuthenticatedActivity {
 		mDownloadSearchHistory.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO
+				downloadSearchHistory();
 			}
 		});
 
@@ -114,13 +117,44 @@ public class QuickBackupActivity extends AbstractAuthenticatedActivity {
 	}
 
 	protected void downloadDictionary() {
-		new DropboxDownloader(this, mApi, BackupType.DICTIONARY.dir(), new OnDownloadedListener() {
+		new DictionWordDownloader(this, mApi, new DownloadReciever<DictionaryWord>() {
 			@Override
-			public void onDownloaded(List<DictionaryWord> words) {
-				if (null != words) {
-					showToast("Downloaded!!!!");
-					new WordDictionaryContentLoader().updateContent(words, QuickBackupActivity.this);
-				}
+			public void recieved(List<DictionaryWord> results) {
+				new WordDictionaryContentLoader().updateContent(results, QuickBackupActivity.this);
+			}
+
+			@Override
+			public void failed(DropboxIssue dropboxIssue) {
+				showToast("Failed");
+			}
+		}).execute();
+
+	}
+
+	protected void downloadSearchHistory() {
+		new SearchHistoryDownloader(this, mApi, new DownloadReciever<SearchHistory>() {
+			@Override
+			public void recieved(List<SearchHistory> results) {
+				showToast("Downloaded: " + results);
+			}
+
+			@Override
+			public void failed(DropboxIssue dropboxIssue) {
+				showToast("Failed");
+			}
+		}).execute();
+	}
+
+	protected void downloadBookmarks() {
+		new BookmarkDownloader(this, mApi, new DownloadReciever<Bookmark>() {
+			@Override
+			public void recieved(List<Bookmark> results) {
+				showToast("Downloaded: " + results);
+			}
+
+			@Override
+			public void failed(DropboxIssue dropboxIssue) {
+				showToast("Failed");
 			}
 		}).execute();
 	}

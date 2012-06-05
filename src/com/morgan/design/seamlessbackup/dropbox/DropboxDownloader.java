@@ -29,6 +29,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.morgan.design.seamlessbackup.domain.DictionaryWord;
 
+@Deprecated
 public class DropboxDownloader extends AsyncTask<Void, Long, String> {
 
 	public interface OnDownloadedListener {
@@ -61,7 +62,7 @@ public class DropboxDownloader extends AsyncTask<Void, Long, String> {
 
 		mDialog = new ProgressDialog(context);
 		mDialog.setMessage("Downloading Document");
-		mDialog.setButton("Cancel", new OnClickListener() {
+		mDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				mCanceled = true;
@@ -137,7 +138,7 @@ public class DropboxDownloader extends AsyncTask<Void, Long, String> {
 			// The AuthSession wasn't properly authenticated or user unlinked.
 		}
 		catch (DropboxPartialFileException e) {
-			// We canceled the operation
+			// We cancelled the operation
 			mErrorMsg = "Download canceled";
 		}
 		catch (DropboxServerException e) {
@@ -147,7 +148,7 @@ public class DropboxDownloader extends AsyncTask<Void, Long, String> {
 				// won't happen since we don't pass in revision with metadata
 			}
 			else if (e.error == DropboxServerException._401_UNAUTHORIZED) {
-				// Unauthorized, so we should unlink them. You may want to
+				// Unauthorised, so we should unlink them. You may want to
 				// automatically log the user out in this case.
 			}
 			else if (e.error == DropboxServerException._403_FORBIDDEN) {
@@ -201,6 +202,7 @@ public class DropboxDownloader extends AsyncTask<Void, Long, String> {
 		mDialog.dismiss();
 		if (null != result) {
 
+			@SuppressWarnings("serial")
 			Type typeOfT = new TypeToken<List<DictionaryWord>>() {
 			}.getType();
 

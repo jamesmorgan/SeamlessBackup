@@ -37,15 +37,19 @@ public class TODO {
 	
 	////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////
-	// Release V0.1
+	// Release V0.1-BETA
 	////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////
 	
-	// TODO -> DONE (06/03/2012) - Set up maven integration
-	// TODO -> DONE (06/03/2012) - Set up Logback & slf4j for Android
-	// TODO -> DONE (06/03/2012) - Set up RoboGuice
+	// TODO -> DONE (03/06/2012) - Set up maven integration
+	// TODO -> DONE (03/06/2012) - Set up Logback & slf4j for Android
+	// TODO -> DONE (03/06/2012) - Set up RoboGuice
+	
 	// TODO -> Set up ARCA logging
 	// TODO -> Set up Google Analytics
+	// TODO -> Set up ORMLite DB, evaluate other options
+
+	// TODO -> Ability to view JSON on the phone, syntax high lighting
 	
 	// TODO -> Investigate Pro-guard
 	// TODO -> Obfuscation API keys including manifest
@@ -63,8 +67,19 @@ public class TODO {
 	// TODO -> Download SMS's
 	// TODO -> Backup SMS's
 	
-	// TODO -> Record backup history in DB
-	// TODO -> Set up ORMLite DB
+	// TODO -> DONE (05/06/2012) - Dropbox API: Create re-usable Dropbox download'er component
+	// TODO -> DONE (05/06/2012) - Dropbox API: Deal with various dropbox exceptions and return types
+	// TODO -> Dropbox API: Deal with file not found in backup directory
+	// TODO -> Dropbox API: Deal with incorrect file type/name in backup directory
+	// TODO -> Dropbox API: Retry on certain errors
+	// TODO -> Dropbox API: Devise backup file chooser/parser type e.g. get latest by date
+	
+	// TODO -> Ability to schedule weekly backups
+	// TODO -> Include DB schedule backup configuration
+	// TODO -> Record backup history in DB, names, dates, applied, MD5 validation?
+	
+	// TODO -> Settings?
+	// TODO -> Home Screen Dashboard -> http://www.javacodegeeks.com/2012/06/android-dashboard-design-pattern.html
 	
 	////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////

@@ -22,37 +22,32 @@
 			<artifactId>GoogleAnalyticsTracker</artifactId>
 			<version>1.4.2</version>
 		</dependency>
-
 		<dependency>
 			<groupId>com.j256.ormlite</groupId>
 			<artifactId>ormlite-android</artifactId>
 			<version>4.40</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.acra</groupId>
 			<artifactId>acra</artifactId>
 			<version>4.2.3</version>
 		</dependency>
-
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
 			<version>12.0</version>
 		</dependency>
-
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 			<version>2.2.1</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.roboguice</groupId>
 			<artifactId>roboguice</artifactId>
 			<version>2.0</version>
 		</dependency>
-		
+
 		<!-- START : Dropbox dependencies -->
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
@@ -88,11 +83,26 @@
 		</dependency>
 		<!-- END : Logback -->
 
+		<!-- START : Testing -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+			<version>4.10</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.android</groupId>
+			<artifactId>android-test</artifactId>
+			<scope>provided</scope>
+			<version>4.0.1.2</version>
+		</dependency>
+		<!-- END : Testing -->
+
 	</dependencies>
 
 	<build>
-		<sourceDirectory>src</sourceDirectory>
-		<testSourceDirectory>test</testSourceDirectory>
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<testSourceDirectory>src/test/java</testSourceDirectory>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

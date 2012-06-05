@@ -55,16 +55,22 @@ public class TODO {
 	// TODO -> Obfuscation API keys including manifest
 	// TODO -> How to run normal JUnit tests in android project
 	
-	// TODO -> Download User Dictionary
-	// TODO -> Backup User Dictionary
+	// TODO -> DONE (05/06/2012) - Backup User Dictionary (Simple)
+	// TODO -> DONE (05/06/2012) - Download User Dictionary
+	// TODO -> DONE (05/06/2012) - Apply User Dictionary
 
-	// TODO -> Download Browser Search History
-	// TODO -> Backup Browser Search History
+	// TODO -> DONE (05/06/2012) - Backup Browser Search History (Simple)
+	// TODO -> DONE (05/06/2012) - Download Browser Search History
+	// TODO -> DONE (05/06/2012) - Apply Browser Search History
 	
-	// TODO -> Download Browser Bookmarks
-	// TODO -> Backup Browser Bookmarks
+	// TODO -> DONE (05/06/2012) - Backup Browser Bookmarks (Simple)
+	// TODO -> DONE (05/06/2012) - Download Browser Bookmarks
+	// TODO -> DONE (05/06/2012) - Apply Browser Bookmarks
+
+	// TODO -> Handle multiple matches when applying download data
 	
 	// TODO -> Download SMS's
+	// TODO -> Apply SMS's
 	// TODO -> Backup SMS's
 	
 	// TODO -> DONE (05/06/2012) - Dropbox API: Create re-usable Dropbox download'er component

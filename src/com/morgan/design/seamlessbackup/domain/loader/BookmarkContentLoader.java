@@ -14,10 +14,13 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.Browser;
+import android.util.Base64;
 
 import com.google.common.collect.Lists;
 import com.morgan.design.seamlessbackup.domain.Bookmark;
@@ -73,8 +76,63 @@ public class BookmarkContentLoader implements ContentLoader<List<Bookmark>> {
 
 	@Override
 	public void updateContent(List<Bookmark> content, Context context) {
-		// TODO Auto-generated method stub
+		ContentResolver contentResolver = context.getContentResolver();
 
+		System.out.println("Attempting to apply bookmarks, total found: " + content.size());
+
+		for (Bookmark bookmark : content) {
+
+			//@formatter:off
+			final Cursor matchedWord = CursorBuilder.create(context)
+					.query(CONTENT_URI)
+					.withColumns(ID_ONLY_COLUMN)
+					.where(URL + " = ?")
+					.whereArgs(new String[] { bookmark.getUrl() })
+					.createCursor();
+			//@formatter:on	
+
+			if (null == matchedWord) {
+				log.info("Possible Error, cursor is null, no Bookmark entries found");
+			}
+			// No match, insert new row
+			else if (0 == matchedWord.getCount()) {
+				log.info("Inserting New Bookmark: {}", bookmark.getUrl());
+				contentResolver.insert(CONTENT_URI, createStatementValues(bookmark));
+			}
+			// Found direct match
+			else if (1 == matchedWord.getCount()) {
+				log.info("Found matching Bookmark, updating: {}", bookmark.getTitle());
+
+				matchedWord.moveToFirst();
+
+				int idIndex = matchedWord.getColumnIndex(_ID);
+				int idOfMatchedWord = matchedWord.getInt(idIndex);
+
+				// Defines selection criteria for the rows you want to update
+				String mUpdateClause = _ID + " = ?";
+				String[] mUpdateArgs = { Integer.toString(idOfMatchedWord) };
+
+				int mRowsUpdated = contentResolver.update(CONTENT_URI, createStatementValues(bookmark), mUpdateClause, mUpdateArgs);
+				log.info("Bookmark Rows updated: {}", mRowsUpdated);
+			}
+			else {
+				// Multiple matches, TODO handle this?
+				System.out.println("Multiple matches, TODO handle this?");
+			}
+		}
 	}
 
+	private ContentValues createStatementValues(Bookmark bookmark) {
+		ContentValues mInsertValues = new ContentValues();
+		mInsertValues.put(BOOKMARK, bookmark.getBookmark());
+		mInsertValues.put(CREATED, bookmark.getCreated());
+		mInsertValues.put(DATE, bookmark.getDate());
+		if (null != bookmark.getFavIcon()) {
+			mInsertValues.put(FAVICON, Base64.decode(bookmark.getFavIcon(), Base64.URL_SAFE));
+		}
+		mInsertValues.put(TITLE, bookmark.getTitle());
+		mInsertValues.put(URL, bookmark.getUrl());
+		mInsertValues.put(VISITS, bookmark.getVisits());
+		return mInsertValues;
+	}
 }

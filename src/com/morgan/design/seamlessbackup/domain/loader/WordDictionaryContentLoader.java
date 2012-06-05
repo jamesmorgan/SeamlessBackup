@@ -67,6 +67,8 @@ public class WordDictionaryContentLoader implements ContentLoader<List<Dictionar
 	@Override
 	public void updateContent(List<DictionaryWord> content, Context context) {
 
+		System.out.println("Attempting to apply dictionary words, total found: " + content.size());
+
 		ContentResolver contentResolver = context.getContentResolver();
 
 		for (DictionaryWord dictionaryWord : content) {
@@ -107,6 +109,7 @@ public class WordDictionaryContentLoader implements ContentLoader<List<Dictionar
 			}
 			else {
 				// Multiple matches, TODO handle this?
+				System.out.println("Multiple matches, TODO handle this?");
 			}
 		}
 	}

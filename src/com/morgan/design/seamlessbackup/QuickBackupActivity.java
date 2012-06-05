@@ -136,6 +136,7 @@ public class QuickBackupActivity extends AbstractAuthenticatedActivity {
 			@Override
 			public void recieved(List<SearchHistory> results) {
 				showToast("Downloaded: " + results);
+				new SearchHistoryContentLoader().updateContent(results, QuickBackupActivity.this);
 			}
 
 			@Override
@@ -150,6 +151,7 @@ public class QuickBackupActivity extends AbstractAuthenticatedActivity {
 			@Override
 			public void recieved(List<Bookmark> results) {
 				showToast("Downloaded: " + results);
+				new BookmarkContentLoader().updateContent(results, QuickBackupActivity.this);
 			}
 
 			@Override

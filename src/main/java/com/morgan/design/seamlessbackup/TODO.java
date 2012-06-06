@@ -41,44 +41,15 @@ public class TODO {
 	////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////
 	
-	// TODO -> DONE (03/06/2012) - Set up maven integration
-	// TODO -> DONE (03/06/2012) - Set up Logback & slf4j for Android
-	// TODO -> DONE (03/06/2012) - Set up RoboGuice
-	
 	// TODO -> Set up ARCA logging
 	// TODO -> Set up Google Analytics
-	// TODO -> Set up ORMLite DB, evaluate other options
+	// TODO -> Set up ORMLite DB (4.41), evaluate other options 
 
 	// TODO -> Investigate Pro-guard
 	// TODO -> Obfuscation API keys including manifest
 	
-	// TODO -> DONE (05/06/2012) - Added ability to run JUnit tests in maven on command line
 	// TODO -> How to run normal JUnit tests in android project?
 	
-	// TODO -> DONE (05/06/2012) - Backup User Dictionary (Simple)
-	// TODO -> DONE (05/06/2012) - Download User Dictionary
-	// TODO -> DONE (05/06/2012) - Apply User Dictionary
-
-	// TODO -> DONE (05/06/2012) - Backup Browser Search History (Simple)
-	// TODO -> DONE (05/06/2012) - Download Browser Search History
-	// TODO -> DONE (05/06/2012) - Apply Browser Search History
-	
-	// TODO -> DONE (05/06/2012) - Backup Browser Bookmarks (Simple)
-	// TODO -> DONE (05/06/2012) - Download Browser Bookmarks
-	// TODO -> DONE (05/06/2012) - Apply Browser Bookmarks
-
-	// TODO -> Download SMS's
-	// TODO -> Apply SMS's
-	// TODO -> Backup SMS's
-	
-	// TODO -> DONE (05/06/2012) - Dropbox API: Create re-usable Dropbox download'er component
-	// TODO -> DONE (05/06/2012) - Dropbox API (Download) : Deal with various dropbox exceptions and return types
-	// TODO -> Dropbox API (Upload) : Deal with various dropbox exceptions and return types
-	// TODO -> Dropbox API: Deal with file not found in backup directory
-	// TODO -> Dropbox API: Deal with incorrect file type/name in backup directory
-	// TODO -> Dropbox API: Retry on certain errors
-	
-	// TODO -> DONE (05/06/2012) - When uploading Datetime stamp each backup file ddMMYYYHHmmss
 	// TODO -> Devise backup file chooser/parser type e.g. get latest by date
 	// TODO -> Compress files, with user option, investigate best fit /algorithm
 	// TODO -> Use phone rating to determine if can handle file compression easily, default on/off depending on phone
@@ -91,6 +62,37 @@ public class TODO {
 	
 	// TODO -> Settings?
 	// TODO -> Home Screen Dashboard -> http://www.javacodegeeks.com/2012/06/android-dashboard-design-pattern.html
+	
+	// TODO -> Download SMS's
+	// TODO -> Apply SMS's
+	// TODO -> Backup SMS's
+
+	// TODO -> Dropbox API: Deal with file not found in backup directory
+	// TODO -> Dropbox API: Deal with incorrect file type/name in backup directory
+	// TODO -> Dropbox API: Retry on certain errors
+	// TODO -> DONE (06/06/2012) - Dropbox API (Upload) : Deal with various dropbox exceptions and return types
+
+	// TODO -> DONE (05/06/2012) - Dropbox API (Download) : Deal with various dropbox exceptions and return types
+	// TODO -> DONE (05/06/2012) - Dropbox API: Create re-usable Dropbox download'er component
+	
+	// TODO -> DONE (05/06/2012) - Added ability to run JUnit tests in maven on command line
+	// TODO -> DONE (05/06/2012) - When uploading Datetime stamp each backup file ddMMYYYHHmmss
+	
+	// TODO -> DONE (05/06/2012) - Backup User Dictionary (Simple)
+	// TODO -> DONE (05/06/2012) - Download User Dictionary
+	// TODO -> DONE (05/06/2012) - Apply User Dictionary
+	
+	// TODO -> DONE (05/06/2012) - Backup Browser Search History (Simple)
+	// TODO -> DONE (05/06/2012) - Download Browser Search History
+	// TODO -> DONE (05/06/2012) - Apply Browser Search History
+	
+	// TODO -> DONE (05/06/2012) - Backup Browser Bookmarks (Simple)
+	// TODO -> DONE (05/06/2012) - Download Browser Bookmarks
+	// TODO -> DONE (05/06/2012) - Apply Browser Bookmarks
+
+	// TODO -> DONE (03/06/2012) - Set up maven integration
+	// TODO -> DONE (03/06/2012) - Set up Logback & slf4j for Android
+	// TODO -> DONE (03/06/2012) - Set up RoboGuice
 	
 	////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////

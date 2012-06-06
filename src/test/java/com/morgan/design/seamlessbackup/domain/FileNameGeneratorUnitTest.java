@@ -21,6 +21,7 @@ public class FileNameGeneratorUnitTest extends TestCase {
 	public void setUp() {
 		dateTimeService = new DateTimeService() {
 			@Override
+			@SuppressWarnings("deprecation")
 			public Date getDate() {
 				return new Date(2012, 06, 05, 10, 30, 01);
 			}

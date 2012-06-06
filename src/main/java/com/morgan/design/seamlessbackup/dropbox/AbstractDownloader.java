@@ -1,7 +1,6 @@
 package com.morgan.design.seamlessbackup.dropbox;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -17,11 +16,7 @@ import android.os.AsyncTask;
 import com.dropbox.client2.DropboxAPI;
 import com.dropbox.client2.DropboxAPI.Entry;
 import com.dropbox.client2.exception.DropboxException;
-import com.dropbox.client2.exception.DropboxIOException;
-import com.dropbox.client2.exception.DropboxParseException;
-import com.dropbox.client2.exception.DropboxPartialFileException;
 import com.dropbox.client2.exception.DropboxServerException;
-import com.dropbox.client2.exception.DropboxUnlinkedException;
 import com.google.common.base.Charsets;
 import com.google.common.io.Files;
 import com.morgan.design.seamlessbackup.domain.BackupType;
@@ -109,13 +104,7 @@ abstract class AbstractDownloader extends AsyncTask<Void, Long, String> {
 			mFileLen = ent.bytes;
 
 			String cachePath = mContext.getCacheDir().getAbsolutePath() + "/" + mBackupType.fileName() + ".temp_cache";
-			try {
-				mFos = new FileOutputStream(cachePath);
-			}
-			catch (FileNotFoundException e) {
-				mDropboxIssue = DropboxIssue.fromError(DropboxError.UNABLE_TO_CREATE_TEMP_FILE);
-				return null;
-			}
+			mFos = new FileOutputStream(cachePath);
 
 			// Download it
 			mApi.getFile(path, null, mFos, null);
@@ -123,36 +112,19 @@ abstract class AbstractDownloader extends AsyncTask<Void, Long, String> {
 				return null;
 			}
 
-			try {
-				return Files.toString(new File(cachePath), Charsets.UTF_8);
-			}
-			catch (IOException e) {
-				log.warn("Unable to download backup file", e);
-				mDropboxIssue = DropboxIssue.fromError(DropboxError.UNABLE_TO_CREATE_TEMP_FILE);
-			}
-			return null;
-		}
-		catch (DropboxUnlinkedException e) {
-			// The AuthSession wasn't properly authenticated or user unlinked.
-			mDropboxIssue = DropboxIssue.fromError(DropboxError.NOT_AUTHORISED);
-		}
-		catch (DropboxPartialFileException e) {
-			// We cancelled the operation
-			mDropboxIssue = DropboxIssue.fromError(DropboxError.CANCELLED);
+			return Files.toString(new File(cachePath), Charsets.UTF_8);
 		}
 		catch (DropboxServerException e) {
-			// Translate error in to usable form
-			mDropboxIssue = DropboxIssue.fromError(e);
-		}
-		catch (DropboxIOException e) {
-			// Happens all the time, probably want to retry automatically.
-			mDropboxIssue = DropboxIssue.fromError(DropboxError.IO_EXCEPTION);
-		}
-		catch (DropboxParseException e) {
-			// Probably due to Dropbox server restarting, should retry
-			mDropboxIssue = DropboxIssue.fromError(DropboxError.PARSE_EXCEPTION);
+			mDropboxIssue = DropboxIssue.fromServerException(e);
 		}
 		catch (DropboxException e) {
+			mDropboxIssue = DropboxIssue.fromException(e);
+		}
+		catch (IOException e) {
+			log.warn("Unable to download backup file", e);
+			mDropboxIssue = DropboxIssue.fromError(DropboxError.UNABLE_TO_CREATE_LOCAL_FILE);
+		}
+		catch (Exception e) {
 			mDropboxIssue = DropboxIssue.fromError(DropboxError.UNKNOWN_ERROR);
 		}
 		return null;

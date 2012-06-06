@@ -23,11 +23,13 @@ public enum DropboxError {
 
 	IO_EXCEPTION("Network error", RETRY, false),
 
+	FILE_TO_BIG("This file is too big to upload", RETRY, false),
+
 	PARSE_EXCEPTION("Dropbox error", RETRY, false),
 
 	NOT_AUTHORISED("The AuthSession wasn't properly authenticated or user unlinked", false, LOG_OUT),
 
-	UNABLE_TO_CREATE_TEMP_FILE("Couldn't create a local file to store the document", false, false),
+	UNABLE_TO_CREATE_LOCAL_FILE("Couldn't create a local file to store the document", false, false),
 
 	UNKNOWN_ERROR("Unknown error", RETRY, false);
 

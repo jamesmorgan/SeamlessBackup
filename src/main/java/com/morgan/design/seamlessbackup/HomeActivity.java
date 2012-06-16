@@ -51,7 +51,8 @@ public class HomeActivity extends AbstractAuthenticatedActivity {
 		mQuickBackup.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				startActivity(new Intent(HomeActivity.this, QuickBackupActivity.class));
+				startActivity(new Intent(HomeActivity.this, SelectableBackupActivity.class));
+				// startActivity(new Intent(HomeActivity.this, QuickBackupActivity.class));
 			}
 		});
 

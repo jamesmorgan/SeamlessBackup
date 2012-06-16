@@ -69,7 +69,9 @@ public class TODO {
 
 	// TODO -> Dropbox API: Deal with file not found in backup directory
 	// TODO -> Dropbox API: Deal with incorrect file type/name in backup directory
+	
 	// TODO -> Dropbox API: Retry on certain errors
+	
 	// TODO -> DONE (06/06/2012) - Dropbox API (Upload) : Deal with various dropbox exceptions and return types
 
 	// TODO -> DONE (05/06/2012) - Dropbox API (Download) : Deal with various dropbox exceptions and return types

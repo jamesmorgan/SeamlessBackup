@@ -16,7 +16,7 @@ import com.google.common.collect.Lists;
 import com.morgan.design.seamlessbackup.domain.DictionaryWord;
 import com.morgan.design.seamlessbackup.domain.mapper.DomainMappingFactory;
 
-public class WordDictionaryContentLoader implements ContentLoader<List<DictionaryWord>> {
+public class WordDictionaryContentLoader implements ContentLoader<DictionaryWord> {
 
 	private static Logger log = LoggerFactory.getLogger(WordDictionaryContentLoader.class);
 

@@ -26,7 +26,7 @@ import com.google.common.collect.Lists;
 import com.morgan.design.seamlessbackup.domain.Bookmark;
 import com.morgan.design.seamlessbackup.domain.mapper.DomainMappingFactory;
 
-public class BookmarkContentLoader implements ContentLoader<List<Bookmark>> {
+public class BookmarkContentLoader implements ContentLoader<Bookmark> {
 
 	private static Logger log = LoggerFactory.getLogger(BookmarkContentLoader.class);
 

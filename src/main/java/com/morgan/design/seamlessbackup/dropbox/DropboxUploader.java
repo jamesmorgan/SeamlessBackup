@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -16,12 +17,11 @@ import com.dropbox.client2.DropboxAPI.UploadRequest;
 import com.dropbox.client2.ProgressListener;
 import com.dropbox.client2.exception.DropboxException;
 import com.dropbox.client2.exception.DropboxServerException;
-import com.morgan.design.seamlessbackup.QuickBackupActivity;
 import com.morgan.design.seamlessbackup.domain.BackupType;
-import com.morgan.design.seamlessbackup.domain.DateTimeServiceImpl;
 import com.morgan.design.seamlessbackup.domain.DropboxError;
 import com.morgan.design.seamlessbackup.domain.DropboxIssue;
 import com.morgan.design.seamlessbackup.domain.FileNameGenerator;
+import com.morgan.design.seamlessbackup.service.DateTimeServiceImpl;
 
 public class DropboxUploader extends AsyncTask<Void, Long, Boolean> {
 
@@ -36,7 +36,7 @@ public class DropboxUploader extends AsyncTask<Void, Long, Boolean> {
 
 	private DropboxIssue mDropboxIssue;
 
-	public DropboxUploader(QuickBackupActivity context, DropboxAPI<?> api, BackupType backupType, File file) {
+	public DropboxUploader(Activity context, DropboxAPI<?> api, BackupType backupType, File file) {
 		// We set the context this way so we don't accidentally leak activities
 		mContext = context.getApplicationContext();
 

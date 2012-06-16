@@ -54,6 +54,10 @@
         <!-- Quick Backup & Restore Activity -->
         <activity android:name=".QuickBackupActivity" >
         </activity>
+
+        <!-- Quick Backup & Restore Activity -->
+        <activity android:name=".SelectableBackupActivity" >
+        </activity>
     </application>
 
 </manifest>

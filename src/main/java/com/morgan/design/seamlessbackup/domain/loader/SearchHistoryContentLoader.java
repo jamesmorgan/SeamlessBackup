@@ -20,7 +20,7 @@ import com.google.common.collect.Lists;
 import com.morgan.design.seamlessbackup.domain.SearchHistory;
 import com.morgan.design.seamlessbackup.domain.mapper.DomainMappingFactory;
 
-public class SearchHistoryContentLoader implements ContentLoader<List<SearchHistory>> {
+public class SearchHistoryContentLoader implements ContentLoader<SearchHistory> {
 
 	private static Logger log = LoggerFactory.getLogger(WordDictionaryContentLoader.class);
 

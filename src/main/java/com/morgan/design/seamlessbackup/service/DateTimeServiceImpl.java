@@ -1,4 +1,4 @@
-package com.morgan.design.seamlessbackup.domain;
+package com.morgan.design.seamlessbackup.service;
 
 import java.util.Date;
 

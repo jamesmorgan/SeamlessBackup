@@ -10,6 +10,8 @@ import junit.framework.TestCase;
 
 import org.junit.Before;
 
+import com.morgan.design.seamlessbackup.service.DateTimeService;
+
 import android.test.suitebuilder.annotation.SmallTest;
 
 public class FileNameGeneratorUnitTest extends TestCase {

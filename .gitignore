@@ -20,5 +20,5 @@ assets/seamless_backup.properties
 # Eclipse project files
 .classpath
 .project
-
+.settings/
 

@@ -8,4 +8,8 @@
     <string name="home_title">Welcome To Seamless Backup</string>
     <string name="home_getting_Started">To get started, please log in to Dropbox. If you dont have an account please, click the follow link…</string>
 
-</resources>
+    <!-- Back Type Description -->
+    <string name="description_browser_bookrmarks">All your bookmarks you have added to your phone</string>
+    <string name="description_browser_search_history">Your complete search history</string>
+    <string name="description_dictionary">All the words you have ever added to your dicitonary</string>
+</resources>

@@ -27,6 +27,7 @@ import com.morgan.design.seamlessbackup.adaptor.types.SelectableBackupType;
 import com.morgan.design.seamlessbackup.domain.BackupType;
 import com.morgan.design.seamlessbackup.domain.Constants;
 import com.morgan.design.seamlessbackup.domain.loader.ContentLoader;
+import com.morgan.design.seamlessbackup.dropbox.DropboxCleaner;
 import com.morgan.design.seamlessbackup.dropbox.DropboxUploader;
 import com.morgan.design.seamlessbackup.service.BackupCreator;
 
@@ -56,7 +57,7 @@ public class SelectableBackupActivity extends AbstractAuthenticatedListActivity 
 		log.debug(selectedTypes.toString());
 
 		for (BackupType backupType : selectedTypes) {
-			log.debug("Running backup for type {}", backupType);
+			log.debug("Running UPLOAD for backup type {}", backupType);
 			try {
 				ContentLoader<?> newInstance = backupType.getContentLoader().newInstance();
 				List<?> loadContent = newInstance.loadContent(this);
@@ -65,13 +66,16 @@ public class SelectableBackupActivity extends AbstractAuthenticatedListActivity 
 			}
 			catch (InstantiationException e) {
 				showToast("Unable to backup %s", backupType.prettyName());
-				e.printStackTrace();
+				log.error(String.format("Unable to backup %s", backupType.prettyName()), e);
 			}
 			catch (IllegalAccessException e) {
 				showToast("Unable to backup %s", backupType.prettyName());
-				e.printStackTrace();
+				log.error(String.format("Unable to backup %s", backupType.prettyName()), e);
 			}
 		}
+
+		log.debug("Running CLEAN UP process");
+		new DropboxCleaner(this, mApi, selectedTypes).execute();
 	}
 
 	private void onCheckboxClicked(final BackupType backupType, boolean isChecked) {

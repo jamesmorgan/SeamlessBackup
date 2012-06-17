@@ -59,6 +59,7 @@ public class TODO {
 	// TODO -> Include DB schedule backup configuration
 	// TODO -> Record backup history in DB, names, dates, applied, MD5 validation?
 	// TODO -> Ability to view JSON on the phone, syntax high lighting
+	// TODO -> Display total number of backups for each type on interface
 	
 	// TODO -> Settings?
 	// TODO -> Fix all Lint warnings/errors
@@ -71,10 +72,10 @@ public class TODO {
 	// TODO -> Dropbox API: Deal with file not found in backup directory
 	// TODO -> Dropbox API: Deal with incorrect file type/name in backup directory
 	// TODO -> Dropbox API: Retry on certain errors
-	
+
 	// TODO -> Allow configurable options number of backup files to keep, default 5
-	// TODO -> Handle multiple matches when applying download data
 	
+	// TODO -> DONE (17/06/2012) - Delete files when reached max number to keep e.g. 5
 	// TODO -> DONE (17/06/2012) - Devise backup file chooser/parser type e.g. get latest by date
 	// TODO -> DONE (17/06/2012) - Move all onClick handlers to XMl with onClick specified, no more addListener calls in code
 	

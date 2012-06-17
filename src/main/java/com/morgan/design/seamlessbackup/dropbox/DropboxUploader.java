@@ -90,7 +90,6 @@ public class DropboxUploader extends AsyncTask<Void, Long, Boolean> {
 				mRequest.upload();
 				return true;
 			}
-
 		}
 		catch (DropboxServerException e) {
 			mDropboxIssue = DropboxIssue.fromServerException(e);

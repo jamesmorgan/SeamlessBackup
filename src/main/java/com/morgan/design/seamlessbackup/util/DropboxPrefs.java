@@ -17,7 +17,7 @@ class DropboxPrefs {
 	 */
 	protected static void storeKeys(Context context, String key, String secret) {
 		// Save the access key for later
-		SharedPreferences prefs = context.getSharedPreferences(ACCOUNT_PREFS_NAME, 0);
+		SharedPreferences prefs = context.getSharedPreferences(ACCOUNT_PREFS_NAME, Context.MODE_PRIVATE);
 		Editor edit = prefs.edit();
 		edit.putString(ACCESS_KEY_NAME, key);
 		edit.putString(ACCESS_SECRET_NAME, secret);
@@ -30,7 +30,7 @@ class DropboxPrefs {
 	 * @param context
 	 */
 	protected static void clearKeys(Context context) {
-		SharedPreferences prefs = context.getSharedPreferences(ACCOUNT_PREFS_NAME, 0);
+		SharedPreferences prefs = context.getSharedPreferences(ACCOUNT_PREFS_NAME, Context.MODE_PRIVATE);
 		Editor edit = prefs.edit();
 		edit.clear();
 		edit.commit();
@@ -43,7 +43,7 @@ class DropboxPrefs {
 	 * @return Array of [access_key, access_secret], or null if none stored
 	 */
 	protected static String[] getKeys(Context context) {
-		SharedPreferences prefs = context.getSharedPreferences(ACCOUNT_PREFS_NAME, 0);
+		SharedPreferences prefs = context.getSharedPreferences(ACCOUNT_PREFS_NAME, Context.MODE_PRIVATE);
 		String key = prefs.getString(ACCESS_KEY_NAME, null);
 		String secret = prefs.getString(ACCESS_SECRET_NAME, null);
 		if (key != null && secret != null) {

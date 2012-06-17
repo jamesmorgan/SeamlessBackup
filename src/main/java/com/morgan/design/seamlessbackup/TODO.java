@@ -72,8 +72,9 @@ public class TODO {
 	// TODO -> Dropbox API: Deal with file not found in backup directory
 	// TODO -> Dropbox API: Deal with incorrect file type/name in backup directory
 	// TODO -> Dropbox API: Retry on certain errors
+	// TODO -> Dropbox API: Deal with errors when deleting old backup content
 
-	// TODO -> Allow configurable options number of backup files to keep, default 5
+	// TODO -> Allow configurable options number of backup files to keep, default 5? Prefs.class
 	
 	// TODO -> DONE (17/06/2012) - Delete files when reached max number to keep e.g. 5
 	// TODO -> DONE (17/06/2012) - Devise backup file chooser/parser type e.g. get latest by date

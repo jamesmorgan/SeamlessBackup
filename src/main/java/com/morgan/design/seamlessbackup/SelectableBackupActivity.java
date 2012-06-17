@@ -26,8 +26,10 @@ import com.google.common.collect.Lists;
 import com.morgan.design.seamlessbackup.adaptor.types.SelectableBackupType;
 import com.morgan.design.seamlessbackup.domain.BackupType;
 import com.morgan.design.seamlessbackup.domain.Constants;
+import com.morgan.design.seamlessbackup.domain.DropboxIssue;
 import com.morgan.design.seamlessbackup.domain.loader.ContentLoader;
 import com.morgan.design.seamlessbackup.dropbox.DropboxCleaner;
+import com.morgan.design.seamlessbackup.dropbox.DropboxCleaner.onDropboxCleaned;
 import com.morgan.design.seamlessbackup.dropbox.DropboxUploader;
 import com.morgan.design.seamlessbackup.service.BackupCreator;
 
@@ -75,7 +77,12 @@ public class SelectableBackupActivity extends AbstractAuthenticatedListActivity 
 		}
 
 		log.debug("Running CLEAN UP process");
-		new DropboxCleaner(this, mApi, selectedTypes).execute();
+		new DropboxCleaner(this, mApi, selectedTypes, new onDropboxCleaned() {
+			@Override
+			public void failed(DropboxIssue issue) {
+				// TODO Deal with failure
+			}
+		}).execute();
 	}
 
 	private void onCheckboxClicked(final BackupType backupType, boolean isChecked) {

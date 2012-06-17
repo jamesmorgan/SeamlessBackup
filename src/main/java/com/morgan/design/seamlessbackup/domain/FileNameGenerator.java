@@ -10,7 +10,7 @@ public class FileNameGenerator {
 
 		String datetimeStamp = Constants.DATE_TIME_FORMAT.format(dateTimeService.getDate());
 
-		return mBackupType.dir() + datetimeStamp + mFile.getName();
+		return mBackupType.dir() + datetimeStamp + "-" + mFile.getName();
 	}
 
 }

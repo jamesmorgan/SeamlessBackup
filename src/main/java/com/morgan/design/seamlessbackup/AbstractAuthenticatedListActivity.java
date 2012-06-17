@@ -65,4 +65,8 @@ public abstract class AbstractAuthenticatedListActivity extends RoboListActivity
 	protected void showToast(String msg) {
 		Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
 	}
+
+	protected void showToast(String msg, Object... args) {
+		Toast.makeText(this, String.format(msg, args), Toast.LENGTH_LONG).show();
+	}
 }

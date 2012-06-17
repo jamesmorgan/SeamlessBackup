@@ -64,9 +64,11 @@ public class SelectableBackupActivity extends AbstractAuthenticatedListActivity 
 				new DropboxUploader(this, mApi, backupType, file).execute();
 			}
 			catch (InstantiationException e) {
+				showToast("Unable to backup %s", backupType.prettyName());
 				e.printStackTrace();
 			}
 			catch (IllegalAccessException e) {
+				showToast("Unable to backup %s", backupType.prettyName());
 				e.printStackTrace();
 			}
 		}

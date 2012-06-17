@@ -3,6 +3,7 @@ package com.morgan.design.seamlessbackup.dropbox;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +23,7 @@ import com.google.common.io.Files;
 import com.morgan.design.seamlessbackup.domain.BackupType;
 import com.morgan.design.seamlessbackup.domain.DropboxError;
 import com.morgan.design.seamlessbackup.domain.DropboxIssue;
+import com.morgan.design.seamlessbackup.domain.FileNameDateSorter;
 
 abstract class AbstractDownloader extends AsyncTask<Void, Long, String> {
 
@@ -83,14 +85,14 @@ abstract class AbstractDownloader extends AsyncTask<Void, Long, String> {
 			}
 
 			// Get the metadata for a directory
-			Entry dirent = mApi.metadata(mBackupType.dir(), 1000, null, true, null);
+			Entry dir = mApi.metadata(mBackupType.dir(), 1000, null, true, null);
 
-			if (!dirent.isDir || dirent.contents == null || 0 == dirent.contents.size()) {
+			if (!dir.isDir || dir.contents == null || 0 == dir.contents.size()) {
 				mDropboxIssue = DropboxIssue.fromError(DropboxError.NOT_FOUND);
 				return null;
 			}
 
-			for (Entry ent : dirent.contents) {
+			for (Entry ent : dir.contents) {
 				System.out.println(ent.fileName());
 			}
 
@@ -98,8 +100,8 @@ abstract class AbstractDownloader extends AsyncTask<Void, Long, String> {
 				return null;
 			}
 
-			// TODO pick correct file for backup
-			Entry ent = dirent.contents.get(0);
+			List<Entry> sortedFiles = FileNameDateSorter.sortByDate(dir.contents);
+			Entry ent = sortedFiles.get(0);
 			String path = ent.path;
 			mFileLen = ent.bytes;
 

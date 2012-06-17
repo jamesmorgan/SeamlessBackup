@@ -41,6 +41,8 @@ public class TODO {
 	////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////
 	
+	// TODO -> Google Drive Integration?
+	
 	// TODO -> Set up ARCA logging
 	// TODO -> Set up Google Analytics
 	// TODO -> Set up ORMLite DB (4.41), evaluate other options 
@@ -50,10 +52,8 @@ public class TODO {
 	
 	// TODO -> How to run normal JUnit tests in android project?
 	
-	// TODO -> Devise backup file chooser/parser type e.g. get latest by date
 	// TODO -> Compress files, with user option, investigate best fit /algorithm
 	// TODO -> Use phone rating to determine if can handle file compression easily, default on/off depending on phone
-	// TODO -> Handle multiple matches when applying download data
 	
 	// TODO -> Ability to schedule weekly backups
 	// TODO -> Include DB schedule backup configuration
@@ -61,6 +61,7 @@ public class TODO {
 	// TODO -> Ability to view JSON on the phone, syntax high lighting
 	
 	// TODO -> Settings?
+	// TODO -> Fix all Lint warnings/errors
 	// TODO -> Home Screen Dashboard -> http://www.javacodegeeks.com/2012/06/android-dashboard-design-pattern.html
 	
 	// TODO -> Download SMS's
@@ -69,8 +70,15 @@ public class TODO {
 
 	// TODO -> Dropbox API: Deal with file not found in backup directory
 	// TODO -> Dropbox API: Deal with incorrect file type/name in backup directory
-	
 	// TODO -> Dropbox API: Retry on certain errors
+	
+	// TODO -> Allow configurable options number of backup files to keep, default 5
+	// TODO -> Handle multiple matches when applying download data
+	
+	// TODO -> DONE (17/06/2012) - Devise backup file chooser/parser type e.g. get latest by date
+	// TODO -> DONE (17/06/2012) - Move all onClick handlers to XMl with onClick specified, no more addListener calls in code
+	
+	// TODO -> DONE (16/06/2012) - Added SelectableBackupActivity allowing for checkbox quick backup options
 	
 	// TODO -> DONE (06/06/2012) - Dropbox API (Upload) : Deal with various dropbox exceptions and return types
 

@@ -26,6 +26,7 @@ import com.morgan.design.seamlessbackup.dropbox.DropboxUploader;
 import com.morgan.design.seamlessbackup.dropbox.SearchHistoryDownloader;
 import com.morgan.design.seamlessbackup.service.BackupCreator;
 
+@Deprecated
 @ContentView(R.layout.quick_backup)
 public class QuickBackupActivity extends AbstractAuthenticatedActivity {
 

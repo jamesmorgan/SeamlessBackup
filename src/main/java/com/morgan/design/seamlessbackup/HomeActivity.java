@@ -5,7 +5,6 @@ import roboguice.inject.InjectView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -20,6 +19,9 @@ public class HomeActivity extends AbstractAuthenticatedActivity {
 
 	@InjectView(R.id.quick_backup)
 	private Button mQuickBackup;
+
+	@InjectView(R.id.quick_restore)
+	private Button mQuickRestore;
 
 	@InjectView(R.id.scheduler)
 	private Button mScheduler;
@@ -36,42 +38,34 @@ public class HomeActivity extends AbstractAuthenticatedActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		mLinkDropboxAccount.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				if (mLoggedIn) {
-					logOut();
-				}
-				else {
-					logIn();
-				}
-			}
-		});
-
-		mQuickBackup.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				startActivity(new Intent(HomeActivity.this, SelectableBackupActivity.class));
-				// startActivity(new Intent(HomeActivity.this, QuickBackupActivity.class));
-			}
-		});
-
-		mScheduler.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				// TODO
-			}
-		});
-
-		mSettings.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				// TODO
-			}
-		});
-
 		// Display the proper UI state if logged in or not
 		setLoggedIn(mApi.getSession().isLinked());
+	}
+
+	public void onLinkToDropBox(View view) {
+		if (mLoggedIn) {
+			logOut();
+		}
+		else {
+			logIn();
+		}
+	}
+
+	public void onStartQuickBackup(View view) {
+		startActivity(new Intent(HomeActivity.this, SelectableBackupActivity.class));
+		// startActivity(new Intent(HomeActivity.this, QuickBackupActivity.class));
+	}
+
+	public void onStartQuickRestore(View view) {
+		startActivity(new Intent(HomeActivity.this, QuickRestoreActivity.class));
+	}
+
+	public void onStartScheduler(View view) {
+		// TODO
+	}
+
+	public void onStartSettings(View view) {
+		// TODO
 	}
 
 	@Override

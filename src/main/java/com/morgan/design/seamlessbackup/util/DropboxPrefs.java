@@ -12,13 +12,13 @@ class DropboxPrefs {
 	private final static String ACCESS_SECRET_NAME = "ACCESS_SECRET";
 
 	/**
-	 * Shows keeping the access keys returned from Trusted Authenticator in a local store, rather than storing user name
-	 * & password, and re-authenticating each time (which is not to be done, ever).
+	 * Shows keeping the access keys returned from Trusted Authenticator in a local store, rather than storing user name & password, and re-authenticating each
+	 * time (which is not to be done, ever).
 	 */
-	protected static void storeKeys(Context context, String key, String secret) {
+	protected static void storeKeys(final Context context, final String key, final String secret) {
 		// Save the access key for later
-		SharedPreferences prefs = context.getSharedPreferences(ACCOUNT_PREFS_NAME, Context.MODE_PRIVATE);
-		Editor edit = prefs.edit();
+		final SharedPreferences prefs = context.getSharedPreferences(ACCOUNT_PREFS_NAME, Context.MODE_PRIVATE);
+		final Editor edit = prefs.edit();
 		edit.putString(ACCESS_KEY_NAME, key);
 		edit.putString(ACCESS_SECRET_NAME, secret);
 		edit.commit();
@@ -29,32 +29,30 @@ class DropboxPrefs {
 	 * 
 	 * @param context
 	 */
-	protected static void clearKeys(Context context) {
-		SharedPreferences prefs = context.getSharedPreferences(ACCOUNT_PREFS_NAME, Context.MODE_PRIVATE);
-		Editor edit = prefs.edit();
+	protected static void clearKeys(final Context context) {
+		final SharedPreferences prefs = context.getSharedPreferences(ACCOUNT_PREFS_NAME, Context.MODE_PRIVATE);
+		final Editor edit = prefs.edit();
 		edit.clear();
 		edit.commit();
 	}
 
 	/**
-	 * Shows keeping the access keys returned from Trusted Authenticator in a local store, rather than storing user name
-	 * & password, and re-authenticating each time (which is not to be done, ever).
+	 * Shows keeping the access keys returned from Trusted Authenticator in a local store, rather than storing user name & password, and re-authenticating each
+	 * time (which is not to be done, ever).
 	 * 
 	 * @return Array of [access_key, access_secret], or null if none stored
 	 */
-	protected static String[] getKeys(Context context) {
-		SharedPreferences prefs = context.getSharedPreferences(ACCOUNT_PREFS_NAME, Context.MODE_PRIVATE);
-		String key = prefs.getString(ACCESS_KEY_NAME, null);
-		String secret = prefs.getString(ACCESS_SECRET_NAME, null);
+	protected static String[] getKeys(final Context context) {
+		final SharedPreferences prefs = context.getSharedPreferences(ACCOUNT_PREFS_NAME, Context.MODE_PRIVATE);
+		final String key = prefs.getString(ACCESS_KEY_NAME, null);
+		final String secret = prefs.getString(ACCESS_SECRET_NAME, null);
 		if (key != null && secret != null) {
-			String[] ret = new String[2];
+			final String[] ret = new String[2];
 			ret[0] = key;
 			ret[1] = secret;
 			return ret;
 		}
-		else {
-			return null;
-		}
+		return null;
 	}
 
 }

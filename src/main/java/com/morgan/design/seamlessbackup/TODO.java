@@ -76,9 +76,15 @@ public class TODO {
 
 	// TODO -> Allow configurable options number of backup files to keep, default 5? Prefs.class
 	
+	// TODO -> Investigate/ determine when & what allowBackUp does to application?
+	
+	// TODO -> Check MD5 from file name after download to check correct
+	// TODO -> Add MD5 for each file to file name
+	
+	
 	// TODO -> DONE (17/06/2012) - Delete files when reached max number to keep e.g. 5
 	// TODO -> DONE (17/06/2012) - Devise backup file chooser/parser type e.g. get latest by date
-	// TODO -> DONE (17/06/2012) - Move all onClick handlers to XMl with onClick specified, no more addListener calls in code
+	// TODO -> DONE (17/06/2012) - Move all onClick handlers to XML with onClick specified, no more addListener calls in code
 	
 	// TODO -> DONE (16/06/2012) - Added SelectableBackupActivity allowing for checkbox quick backup options
 	

@@ -14,12 +14,12 @@ public class SeamlessBackupApplication extends Application {
 	public void onCreate() {
 		super.onCreate();
 
-		AndroidAuthSession session = DropboxConfig.buildSession(this);
+		final AndroidAuthSession session = DropboxConfig.buildSession(this);
 		mApi = new DropboxAPI<AndroidAuthSession>(session);
 	}
 
 	public DropboxAPI<AndroidAuthSession> getDropboxApi() {
-		return this.mApi;
+		return mApi;
 	}
 
 }

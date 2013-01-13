@@ -22,20 +22,21 @@ public class BackupCreator {
 
 	private static final String SEAMLESS_BACKUP_DIR = "/SeamlessBackup/";
 
-	public File createFile(List<?> loadContent, BackupType type) {
+	public File createFile(final List<?> loadContent, final BackupType type) {
 		try {
-			Gson gson = new GsonBuilder().setPrettyPrinting().create();
-			String json = gson.toJson(loadContent);
+			final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+			final String json = gson.toJson(loadContent);
 
-			File file = makeFile(type);
-			FileOutputStream fOut = new FileOutputStream(file);
+			final File file = makeFile(type);
+			final FileOutputStream fOut = new FileOutputStream(file);
 
 			/*
-			 * We have to use the openFileOutput()-method the ActivityContext provides, to protect your file from others
-			 * and This is done for security-reasons. We chose MODE_WORLD_READABLE, because we have nothing to hide in
-			 * our file
+			 * We have to use the openFileOutput()-method the ActivityContext
+			 * provides, to protect your file from others and This is done for
+			 * security-reasons. We chose MODE_WORLD_READABLE, because we have
+			 * nothing to hide in our file
 			 */
-			OutputStreamWriter osw = new OutputStreamWriter(fOut);
+			final OutputStreamWriter osw = new OutputStreamWriter(fOut);
 
 			// Write the string to the file
 			osw.write(json);
@@ -47,25 +48,33 @@ public class BackupCreator {
 
 			return file;
 		}
-		catch (FileNotFoundException e) {
+		catch (final FileNotFoundException e) {
 			e.printStackTrace();
+			log.error("Unable to create file for backup, file not found", e);
 		}
-		catch (IOException e) {
+		catch (final IOException e) {
 			e.printStackTrace();
+			log.error("Unable to create file for backup, IOException", e);
 		}
 		return null;
 	}
 
-	private File makeFile(BackupType type) {
-		File sdCard = Environment.getExternalStorageDirectory();
-		File dir = new File(sdCard.getAbsolutePath() + SEAMLESS_BACKUP_DIR);
+	private File makeFile(final BackupType type) throws IOException {
+
+		// ##### Write a DIR to the disk #####
+		final File dir = new File(Environment.getExternalStorageDirectory(), SEAMLESS_BACKUP_DIR);
 		if (!dir.exists()) {
-			log.info("Making DIR as not proesent");
+			log.info("Making DIR as not proesent, file path: {}", dir.getPath());
 			dir.mkdirs();
 		}
 
-		// ##### Write a file to the disk #####
-		File file = new File(dir, type.fileName());
+		// ##### Write a FILE to the disk #####
+		final File file = new File(dir, type.fileName());
+		if (!file.exists()) {
+			log.info("Making FILE as not proesent, file path: {}", file.getPath());
+			file.createNewFile();
+		}
+
 		return file;
 	}
 

@@ -13,14 +13,14 @@ public class QuickRestoreActivity extends AbstractAuthenticatedListActivity {
 	private Button listBackUps;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		// TODO list all backup files for each type
 
 	}
 
-	public void onListBackUps(View view) {
+	public void onListBackUps(final View view) {
 
 	}
 }
